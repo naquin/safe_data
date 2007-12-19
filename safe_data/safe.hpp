@@ -24,14 +24,16 @@ template <class T> class no_initial {
 	typedef typename safe_detail::select_types<T>::types types;
 public:
 	typedef typename types::raw_type             raw_type;
-	typedef typename types::reference_const_type reference_const_type;
+    // typedef typename types::reference_const_type reference_const_type;
 
-	inline static reference_const_type value() { return val; }
-private:
-	static raw_type const val;
+	inline static raw_type value() { return raw_type(); }
+    // inline static reference_const_type value() { return val; }
+// private:
+//  static raw_type const val;
 };
-template <class T>
-typename no_initial<T>::raw_type const no_initial<T>::val = no_initial<T>::raw_type();
+
+// template <class T>
+// typename no_initial<T>::raw_type const no_initial<T>::val = no_initial<T>::raw_type();
 
 
 // data validation

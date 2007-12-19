@@ -1,12 +1,13 @@
 /*
 Copyright Mike Naquin, 2006. All rights reserved.
 File:
-	main.cpp
+	test.cpp
 
 Created: 2006.05.14
 
 Description:
-	
+	Automated tests for safe_data. There should be no unexpected exceptions
+	when running main().
 */
 
 #include <iostream>
@@ -22,6 +23,8 @@ void test_str    (std::ostream& out);
 void test_ref    (std::ostream& out);
 void test_const  (std::ostream& out);
 void test_date   (std::ostream& out);
+
+void example();
 
 int main(int const argc, char* argv[])
 {
@@ -56,8 +59,6 @@ int main(int const argc, char* argv[])
 #include "safe_data/validations.hpp"
 #include "safe_data/exceptions.hpp"
 
-
-#include <stdexcept>
 #include <string>
 
 using std::string;
@@ -83,7 +84,7 @@ using safe_data::max_validation;
 using safe_data::range_validation;
 using safe_data::str_length_validation;
 
-typedef initial_value<0> percent_initial;
+// typedef initial_value<0> percent_initial;
 typedef range_value<0,1> percent_range;
 
 template <class T, class validation>
@@ -98,8 +99,6 @@ struct percent_exception : public range_exception<T, validation> {
 	explicit percent_exception(std::string const& msg) :
 		range_exception<T, validation>(msg)
 	{ }
-
-//	virtual ~percent_exception() { }
 
 	static std::string percent_msg(argument_type data)
 	{
@@ -123,7 +122,7 @@ struct percent_validation : public range_validation<T, validation, exception> {
 	using base::validate;
 };
 
-typedef safe<double, percent_validation<double>, percent_initial> percent;
+typedef safe<double, percent_validation<double> > percent;
 
 void test_percent(std::ostream& out)
 {
@@ -349,25 +348,25 @@ void test_date (std::ostream& out)
 {
 	out << " - date test - " << endl;
 // debug will throw exception
-/*
+
 #ifndef NDEBUG
-	try {
-		uninitialized_date ud;
-	}
-	catch ( std::runtime_error const& e ) {
-		out << "expected exception caught: " << e.what() << endl;
-	}
+ try {
+     uninitialized_date ud;
+ }
+ catch ( std::runtime_error const& e ) {
+     out << "expected exception caught: " << e.what() << endl;
+ }
 #else
-	uninitialized_date ud;
-	try {
-		ud.validate();
-		throw std::runtime_error("error: expected exception not thrown");
-	}
-	catch ( std::runtime_error const& e ) {
-		out << "expected exception caught: " << e.what() << endl;
-	}
+ uninitialized_date ud;
+ try {
+     ud.validate();
+     throw std::runtime_error("error: expected exception not thrown");
+ }
+ catch ( std::runtime_error const& e ) {
+     out << "expected exception caught: " << e.what() << endl;
+ }
 #endif
-*/
+
 	safe_date sd;
 	BOOST_ASSERT(sd == date_initial::value());
 	out << "initial value: " << sd << endl;
