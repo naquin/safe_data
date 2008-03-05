@@ -31,7 +31,6 @@ struct min_exception : public std::out_of_range {
 
 	explicit min_exception(argument_type data) : base(min_msg(data)) { }
 	explicit min_exception(std::string const& msg) : base(msg) { }
-//	virtual ~min_exception() { }
 
 	static std::string min_msg(argument_type data)
 	{
@@ -51,8 +50,6 @@ struct max_exception : public std::out_of_range {
 
 	explicit max_exception(argument_type data) : base(max_msg(data)) { }
 	explicit max_exception(std::string const& msg) : base(msg) { }
-
-//	virtual ~max_exception() { }
 
 	static std::string max_msg(argument_type data)
 	{
@@ -76,7 +73,6 @@ struct range_exception : public std::out_of_range {
 		base(range_msg(data))
 	{ }
 	explicit range_exception(std::string const& msg) : base(msg) { }
-//	virtual ~range_exception() { }
 
 	static std::string range_msg(argument_type data)
 	{
@@ -98,7 +94,6 @@ struct size_exception : public std::length_error {
 	explicit size_exception(argument_type data) :
 		base(size_msg(data)) { }
 	explicit size_exception(std::string const& msg) : base(msg) { }
-	virtual ~size_exception() { }
 
 	static std::string size_msg(argument_type data)
 	{
@@ -126,7 +121,6 @@ struct str_length_exception : public std::length_error {
 		base(length_msg(data, length))
 	{ }
 	explicit str_length_exception(std::string const& msg) : base(msg) { }
-//	virtual ~str_length_exception() { }
 
 	static std::string length_msg(argument_type data, length_type const& )
 	{

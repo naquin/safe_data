@@ -1,10 +1,9 @@
 safe_data 0.1
 =============
 
-safe_data provides a convenient and efficient data types that are
-self-validating. Can validate ranges, minimums, maximums, string length, and
-container sizes. safe_data is designed to work well with the C++ Boost
-Libraries.
+safe_data provides convenient and efficient C++ data types that are
+self-validating. Validates ranges, min/max, string length, container sizes,
+etc. safe_data guarantees to hold valid data at all times.
 
 
 Installation
@@ -34,4 +33,4 @@ Current Release
 ---------------
 
 The most current release can always be found at:
-    https://sourceforge.net/projects/safedata/
+    http://sourceforge.net/projects/safedata/
