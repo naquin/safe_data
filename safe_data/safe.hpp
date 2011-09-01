@@ -84,6 +84,11 @@ public:
 	template <class U, class V, class I>
 	safe& operator= (safe<U,V,I> const& rhs) { data_ = do_validation(rhs.data()); return *this; }
 
+	void swap(safe& other)
+	{
+		std::swap(data_, other.data_);
+	}
+
 // access
 	operator reference_const_type     () const { return data_; }
 	         reference_const_type data() const { return data_; }
@@ -97,11 +102,6 @@ public:
 	raw_type operator-() const { return -data_; }
 	raw_type operator~() const { return ~data_; }
 
-	void swap(safe& other)
-	{
-		std::swap(data_, other.data_);
-	}
-	
 	safe& operator++()
 	{
 		raw_type d(data_);
