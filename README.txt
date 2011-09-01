@@ -1,4 +1,4 @@
-safe_data 0.2
+safe_data 0.3
 =============
 
 safe_data provides convenient and efficient C++ data types that are

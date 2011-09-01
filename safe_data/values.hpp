@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	boost/safe_data/common_values.hpp
+	safe_data/common_values.hpp
 
 Created: 2006.05.14
 
