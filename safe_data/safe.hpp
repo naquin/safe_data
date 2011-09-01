@@ -16,6 +16,8 @@ Description:
 #include "safe_fwd.hpp"
 #include "safe_detail.hpp"
 
+#include <algorithm> // for std::swap
+
 namespace safe_data {
 
 
@@ -101,6 +103,11 @@ public:
 	inline raw_type operator-() const { return -data_; }
 	inline raw_type operator~() const { return ~data_; }
 
+	void swap(safe& other)
+	{
+		std::swap(data_, other.data_);
+	}
+	
 	inline safe& operator++()
 	{
 		raw_type d(data_);

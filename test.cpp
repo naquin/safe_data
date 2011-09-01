@@ -160,6 +160,15 @@ void test_percent(std::ostream& out)
 	p = 1;
 	out << "assign to 100%: " << p << endl;
 
+	// test swap
+	percent p2;
+	p.swap(p2);
+
+	BOOST_ASSERT(p  == 0.0);
+	BOOST_ASSERT(p2 == 1.0);
+
+	out << "swap p and p2 (" << p << ", " << p2 << ")" << endl;
+
 	out << endl;
 }
 
