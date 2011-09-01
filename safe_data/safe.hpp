@@ -28,14 +28,8 @@ public:
 	typedef typename types::raw_type             raw_type;
     // typedef typename types::reference_const_type reference_const_type;
 
-	inline static raw_type value() { return raw_type(); }
-    // inline static reference_const_type value() { return val; }
-// private:
-//  static raw_type const val;
+	static raw_type value() { return raw_type(); }
 };
-
-// template <class T>
-// typename no_initial<T>::raw_type const no_initial<T>::val = no_initial<T>::raw_type();
 
 
 // data validation
@@ -43,7 +37,7 @@ template <class T> class no_validation {
 public:
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 
-	static inline void validate(argument_type /*data*/ ) { }
+	static void validate(argument_type /*data*/ ) { }
 };
 
 
@@ -94,41 +88,41 @@ public:
 	operator reference_const_type     () const { return data_; }
 	         reference_const_type data() const { return data_; }
 
-	 inline void validate() const { validation_type::validate(data_); }
+	void validate() const { validation_type::validate(data_); }
 
 // unary operators
-	inline bool operator! () const { return !data_; }
+	bool operator! () const { return !data_; }
 
-	inline raw_type operator+() const { return +data_; }
-	inline raw_type operator-() const { return -data_; }
-	inline raw_type operator~() const { return ~data_; }
+	raw_type operator+() const { return +data_; }
+	raw_type operator-() const { return -data_; }
+	raw_type operator~() const { return ~data_; }
 
 	void swap(safe& other)
 	{
 		std::swap(data_, other.data_);
 	}
 	
-	inline safe& operator++()
+	safe& operator++()
 	{
 		raw_type d(data_);
 		data_ = do_validation(++d);
 		return *this;
 	}
-	inline safe& operator--()
+	safe& operator--()
 	{
 		raw_type d(data_);
 		data_ = do_validation(--d);
 		return *this;
 	}
 
-	inline safe  operator++(int)
+	safe  operator++(int)
 	{
 		safe s(*this);
 		raw_type d(data_);
 		data_ = do_validation(++d);
 		return s;
 	}
-	inline safe  operator--(int)
+	safe  operator--(int)
 	{
 		safe s(*this);
 		raw_type d(data_);
@@ -136,7 +130,7 @@ public:
 		return s;
 	}
 
-	static inline reference_const_type do_validation(reference_const_type data)
+	static reference_const_type do_validation(reference_const_type data)
 	{ validation_type::validate(data); return data; }
 
 private:
