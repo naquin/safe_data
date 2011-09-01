@@ -1,4 +1,4 @@
-safe_data 0.1
+safe_data 0.2
 =============
 
 safe_data provides convenient and efficient C++ data types that are
@@ -33,4 +33,4 @@ Current Release
 ---------------
 
 The most current release can always be found at:
-    http://sourceforge.net/projects/safedata/
+    https://github.com/syvex/safe_data
