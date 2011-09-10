@@ -16,7 +16,7 @@ Description:
 #include "safe_fwd.hpp"
 #include "safe_detail.hpp"
 
-#include <algorithm> // for std::swap
+#include <boost/swap.hpp>
 
 namespace safe_data {
 
@@ -86,7 +86,7 @@ public:
 
 	void swap(safe& other)
 	{
-		std::swap(data_, other.data_);
+		boost::swap(data_, other.data_);
 	}
 
 // access
