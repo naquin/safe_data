@@ -73,49 +73,51 @@ using safe_data::max_exception;
 using safe_data::range_exception;
 using safe_data::size_exception;
 using safe_data::str_length_exception;
-      
-using safe_data::initial_value;
-using safe_data::max_value;
-using safe_data::min_value;
-using safe_data::range_value;
+
+using boost::mpl::integral_c;
+using boost::mpl::int_;
       
 using safe_data::min_validation;
 using safe_data::max_validation;
 using safe_data::range_validation;
 using safe_data::str_length_validation;
 
-// typedef initial_value<0> percent_initial;
-typedef range_value<0,1> percent_range;
+SAFE_DATA_INITIAL_VALUE(percent_min, double, 0.0)
+SAFE_DATA_INITIAL_VALUE(percent_max, double, 0.0)
 
-template <class T, class validation>
-struct percent_exception : public range_exception<T, validation> {
+template <class T, class min_value, class max_value>
+struct percent_exception : public range_exception<T, min_value, max_value> {
 	typedef T value_type;
 	typedef T const& argument_type;
-	typedef validation validation_type;
+	typedef min_value lower;
+	typedef max_value upper;
 
 	explicit percent_exception(argument_type data) :
-		range_exception<T, validation>(percent_msg(data))
+		range_exception<T, min_value, max_value>(percent_msg(data))
 	{ }
 	explicit percent_exception(std::string const& msg) :
-		range_exception<T, validation>(msg)
+		range_exception<T, min_value, max_value>(msg)
 	{ }
 
 	static std::string percent_msg(argument_type data)
 	{
 		std::ostringstream ss;
 		ss  << "The percent " << (data * 100) << "% must be between "
-			<< (validation_type::min_val * 100) << "% and "
-			<< (validation_type::max_val * 100) << "%.";
+			<< (lower() * 100) << "% and "
+			<< (upper() * 100) << "%.";
 		return ss.str();
 	}
 };
 
-template <class T, class validation = percent_range,
-	class exception = percent_exception<T, validation>
+template <class T,
+          class min_value = percent_min,
+          class max_value = percent_max,
+	      class exception = percent_exception<T, min_value, max_value>
 >
-struct percent_validation : public range_validation<T, validation, exception> {
-	typedef range_validation<T, validation, exception> base;
-	typedef typename base::validation_type validation_type;
+struct percent_validation : public range_validation<T, min_value, max_value, exception> {
+	typedef range_validation<T, min_value, max_value, exception> base;
+	typedef typename base::lower lower;
+	typedef typename base::upper upper;
 	typedef typename base::exception_type  exception_type;
 	typedef typename base::argument_type   argument_type;
 
@@ -173,7 +175,7 @@ void test_percent(std::ostream& out)
 }
 
 // int test
-typedef safe<int, max_validation<int, max_value<32> >, initial_value<8> > safe_int;
+typedef safe<int, max_validation<int, int_<32> >, int_<8> > safe_int;
 
 void test_int(std::ostream& out)
 {
@@ -213,12 +215,10 @@ void test_int(std::ostream& out)
 #include "safe_data/io.hpp"
 #include "safe_data/operators.hpp"
 
-struct str_initial {
-	static const char* value() { return "foo"; }
-};
+typedef safe_data::c_str<boost::mpl::string<'f', 'o', 'o'> > str_initial;
 
 // string test
-typedef safe<string, str_length_validation<string, max_value<8> >, str_initial> safe_str;
+typedef safe<string, str_length_validation<string, boost::mpl::size_t<8> >, str_initial> safe_str;
 
 void test_str(std::ostream& out)
 {
@@ -246,7 +246,7 @@ void test_str(std::ostream& out)
 	out << endl;
 }
 
-typedef safe<double&, range_validation<double, range_value<0, 10> > > safe_dbl;
+typedef safe<double&, range_validation<double, int_<0>, int_<10> > > safe_dbl;
 
 void test_ref(std::ostream& out)
 {
@@ -296,7 +296,7 @@ void test_ref(std::ostream& out)
 
 typedef safe<
 	short,
-	min_validation<short, min_value<3> >,
+	min_validation<short, integral_c<short, 3> >,
 	no_initial<short>
 > safe_short;
 void test_const(std::ostream& out)
@@ -346,9 +346,7 @@ struct date_validation {
 	}
 };
 
-struct date_initial {
-	inline static date value() { return boost::gregorian::day_clock::local_day(); }
-};
+SAFE_DATA_INITIAL_VALUE(date_initial, date, boost::gregorian::day_clock::local_day())
 
 typedef safe<date, date_validation> uninitialized_date;
 typedef safe<date, date_validation, date_initial> safe_date;
@@ -377,7 +375,7 @@ void test_date (std::ostream& out)
 #endif
 
 	safe_date sd;
-	BOOST_ASSERT(sd == date_initial::value());
+	BOOST_ASSERT(sd == date_initial());
 	out << "initial value: " << sd << endl;
 
 	out << endl;

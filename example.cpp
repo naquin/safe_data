@@ -23,43 +23,40 @@ using safe_data::safe;
 using safe_data::no_initial;
 using safe_data::no_validation;
 
-using safe_data::initial_value;
-using safe_data::max_value;
-using safe_data::range_value;
+using safe_data::c_str;
+using boost::mpl::int_;
       
 using safe_data::max_validation;
 using safe_data::range_validation;
 using safe_data::str_length_validation;
 
-// A floating point percent type with valid values between 0.0 and 1.0. Defaults to 0.0.
+// A floating point percent type with valid values between 0.0 and 1.0. Defaults to 0.5.
+SAFE_DATA_INITIAL_VALUE(double_init, double, 0.5)
+
 typedef safe<
     double,
-    range_validation<double, range_value<0,1> >,
-    initial_value<0>
+    range_validation<double, int_<0>, int_<1> >,
+    double_init
 > percent;
 
 // An int type that must be less than 42. Defaults to 8.
 typedef safe<
     int,
-    max_validation<int, max_value<42> >,
-    initial_value<8>
+    max_validation<int, int_<42> >,
+    int_<8>
 > safe_int;
-
-struct str_initial {
-	static const char* value() { return "foo"; }
-};
 
 // A string type that cannot exceed a length of 8 characters. Defaults to "foo".
 typedef safe<
     string,
-    str_length_validation<string, max_value<8> >,
-    str_initial
+    str_length_validation<string, boost::mpl::size_t<8> >,
+    c_str<boost::mpl::string<'f', 'o', 'o'> >
 > safe_str;
 
 void example()
 {
-	percent p; // initial value is 0
-	p = 0.5;   // 0.5 within range of 0.0 and 1.0
+	percent p; // initial value is 0.5
+	p = 0.6;   // 0.6 within range of 0.0 and 1.0
     try {
     	p = 1.5;   // throws exception: out of range
     }

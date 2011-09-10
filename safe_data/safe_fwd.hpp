@@ -16,7 +16,7 @@ Description:
 namespace safe_data {
 
 // default value
-template <class T> class no_initial;
+//template <class T> class no_initial;
 
 // data validation
 template <class T> class no_validation;
@@ -25,7 +25,7 @@ template <class T> class no_validation;
 template <
 	class T,
 	class validation    = no_validation<T>,
-	class initial_value = no_initial<T>
+	class initial_value = T
 >
 class safe;
 

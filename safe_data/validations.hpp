@@ -21,124 +21,128 @@ namespace safe_data {
 
 
 // min validations
-template <class T, class validation, class exception = min_exception<T, validation> >
+template <class T, class min_value, class exception = min_exception<T, min_value> >
 struct min_validation {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+	typedef min_value value;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data < validation::min_val )
+		if ( data < value() )
 			throw exception_type(data);
 	}
 };
 
-template <class T, class validation, class exception = min_exception<T, validation> >
+template <class T, class min_value, class exception = min_exception<T, min_value> >
 struct min_validation_lte {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+	typedef min_value value;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data <= validation::min_val )
+		if ( data <= value() )
 			throw exception_type(data);
 	}
 };
 
 // maximum validations
-template <class T, class validation, class exception = max_exception<T, validation> >
+template <class T, class max_value, class exception = max_exception<T, max_value> >
 struct max_validation {
-	typedef validation validation_type;
+	typedef max_value value;
 	typedef exception  exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data > validation::max_val )
+		if ( data > value() )
 			throw exception_type(data);
 	}
 };
 
-template <class T, class validation, class exception = max_exception<T, validation> >
+template <class T, class max_value, class exception = max_exception<T, max_value> >
 struct max_validation_gte {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+	typedef max_value value;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data >= validation::max_val )
+		if ( data >= value() )
 			throw exception_type(data);
 	}
 };
 
 // range validations
-template <class T, class validation, class exception = range_exception<T, validation> >
+template <class T, class min_value, class max_value, class exception = range_exception<T, min_value, max_value> >
 struct range_validation {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+    typedef min_value lower;
+    typedef max_value upper;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data < validation::min_val || data > validation::max_val )
+		if ( data < lower() || data > upper() )
 			throw exception_type(data);
 	}
 };
 
-template <class T, class validation, class exception = range_exception<T, validation> >
+template <class T, class min_value, class max_value, class exception = range_exception<T, min_value, max_value> >
 struct range_validation_min_lte_max_gte {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+    typedef min_value lower;
+    typedef max_value upper;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data <= validation::min_val || data >= validation::max_val )
+		if ( data <= lower() || data >= upper() )
 			throw exception_type(data);
 	}
 };
 
-template <class T, class validation, class exception = range_exception<T, validation> >
+template <class T, class min_value, class max_value, class exception = range_exception<T, min_value, max_value> >
 struct range_validation_min_lte {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+    typedef min_value lower;
+    typedef max_value upper;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data <= validation::min_val || data > validation::max_val )
+		if ( data <= lower() || data > upper() )
 			throw exception_type(data);
 	}
 };
 
-template <class T, class validation, class exception = range_exception<T, validation> >
+template <class T, class min_value, class max_value, class exception = range_exception<T, min_value, max_value> >
 struct range_validation_max_gte {
-	typedef validation validation_type;
-	typedef exception  exception_type;
+    typedef min_value lower;
+    typedef max_value upper;
+	typedef exception exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
-		if ( data < validation::min_val || data >= validation::max_val )
+		if ( data < lower() || data >= upper() )
 			throw exception_type(data);
 	}
 };
 
 // size validations for any container with size()
-template <class T, class validation, class exception = size_exception<T, validation> >
+template <class T, class size, class exception = size_exception<T, size> >
 struct size_validation {
-	typedef validation validation_type;
+	typedef size value;
 	typedef exception  exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type container) {
-		if ( container.size() > validation::max_val )
+		if ( container.size() > value() )
 			throw exception_type(container);
 	}
 };
 
 // length validations for strings
-template <class T, class validation, class exception = str_length_exception<T, validation> >
+template <class T, class length, class exception = str_length_exception<T, length> >
 struct str_length_validation {
-	typedef validation validation_type;
+	typedef length value;
 	typedef exception  exception_type;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 	static inline void validate(argument_type str) {
-		if ( str.length() > validation::max_val )
+		if ( str.length() > value() )
 			throw exception_type(str, str.length());
 	}
 };

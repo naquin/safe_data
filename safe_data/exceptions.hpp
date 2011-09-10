@@ -22,11 +22,11 @@ Description:
 namespace safe_data {
 
 
-template <class T, class validation>
+template <class T, class min_value>
 struct min_exception : public std::out_of_range {
 	typedef std::out_of_range base;
 	typedef T value_type;
-	typedef validation validation_type;
+	typedef min_value value;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 
 	explicit min_exception(argument_type data) : base(min_msg(data)) { }
@@ -36,16 +36,16 @@ struct min_exception : public std::out_of_range {
 	{
 		std::ostringstream ss;
 		ss << "The value " << data << " must not be less than "
-			<< validation_type::min_val << '.';
+			<< value() << '.';
 		return ss.str();
 	}
 };
 
-template <class T, class validation>
+template <class T, class max_value>
 struct max_exception : public std::out_of_range {
 	typedef std::out_of_range base;
 	typedef T value_type;
-	typedef validation validation_type;
+	typedef max_value value;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 
 	explicit max_exception(argument_type data) : base(max_msg(data)) { }
@@ -56,17 +56,18 @@ struct max_exception : public std::out_of_range {
 		std::ostringstream ss;
 		ss  << "The value " << data
 			<< " must not be greater than "
-			<< validation_type::max_val
+			<< value()
 			<< '.';
 		return ss.str();
 	}
 };
 
-template <class T, class validation>
+template <class T, class min_value, class max_value>
 struct range_exception : public std::out_of_range {
 	typedef std::out_of_range base;
 	typedef T value_type;
-	typedef validation validation_type;
+	typedef min_value lower;
+    typedef max_value upper;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 
 	explicit range_exception(argument_type data) :
@@ -78,17 +79,17 @@ struct range_exception : public std::out_of_range {
 	{
 		std::ostringstream ss;
 		ss  << "The value " << data << " must be between "
-			<< validation_type::min_val << " and "
-			<< validation_type::max_val << '.';
+			<< lower() << " and "
+			<< upper() << '.';
 		return ss.str();
 	}
 };
 
-template <class T, class validation>
+template <class T, class size>
 struct size_exception : public std::length_error {
 	typedef std::length_error base;
 	typedef T value_type;
-	typedef validation validation_type;
+	typedef size value;
 	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
 
 	explicit size_exception(argument_type data) :
@@ -100,25 +101,25 @@ struct size_exception : public std::length_error {
 		std::ostringstream ss;
 		ss  << "The size " << data.size()
 			<< " must not exceed "
-			<< validation_type::max_val
+			<< value()
 			<< '.';
 		return ss.str();
 	}
 };
 
-template <class T, class validation>
+template <class T, class length>
 struct str_length_exception : public std::length_error {
 	typedef std::length_error base;
 	typedef T value_type;
-	typedef validation validation_type;
+	typedef length value;
 
 	typedef typename safe_detail::select_types<T>::types types;
 	typedef typename types::argument_type argument_type;
 	typedef typename types::raw_type             raw_type;
 	typedef typename raw_type::size_type     length_type;
 
-	str_length_exception(argument_type data, length_type const& length) :
-		base(length_msg(data, length))
+	str_length_exception(argument_type data, length_type const& len) :
+		base(length_msg(data, len))
 	{ }
 	explicit str_length_exception(std::string const& msg) : base(msg) { }
 
@@ -127,7 +128,7 @@ struct str_length_exception : public std::length_error {
 		std::ostringstream ss;
 		ss  << "The length of " << data
 			<< " must not exceed "
-			<< validation_type::max_val
+			<< value()
 			<< '.';
 		return ss.str();
 	}

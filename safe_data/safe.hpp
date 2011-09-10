@@ -59,7 +59,7 @@ public:
 	typedef typename types::argument_type        argument_type;
 
 // self
-	safe() : data_(initial_type::value())
+	safe() : data_(initial_type())
 	{
 		#ifndef NDEBUG
 		validation_type::validate(data_);
