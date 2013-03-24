@@ -20,9 +20,15 @@ Description:
 
 namespace safe_data {
 
-#ifndef SAFE_DATA_INITIAL_VALUE // only use this when there is no alternative in boost MPL, like for doubles
-#define SAFE_DATA_INITIAL_VALUE(name, type, value) struct name { operator type() const { return value; } };
-#endif
+// only use this when there is no alternative in boost MPL, like for doubles
+#define SAFE_DATA_INITIAL_VALUE(name, type, value)                              \
+    struct name                                                                 \
+    {                                                                           \
+        operator type() const                                                   \
+        {                                                                       \
+            return value;                                                       \
+        }                                                                       \
+    };
 
 template <class T>
 struct c_str {

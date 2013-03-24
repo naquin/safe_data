@@ -27,7 +27,7 @@ struct min_exception : public std::out_of_range {
 	typedef std::out_of_range base;
 	typedef T value_type;
 	typedef min_value value;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 
 	explicit min_exception(argument_type data) : base(min_msg(data)) { }
 	explicit min_exception(std::string const& msg) : base(msg) { }
@@ -46,7 +46,7 @@ struct max_exception : public std::out_of_range {
 	typedef std::out_of_range base;
 	typedef T value_type;
 	typedef max_value value;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 
 	explicit max_exception(argument_type data) : base(max_msg(data)) { }
 	explicit max_exception(std::string const& msg) : base(msg) { }
@@ -68,7 +68,7 @@ struct range_exception : public std::out_of_range {
 	typedef T value_type;
 	typedef min_value lower;
     typedef max_value upper;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 
 	explicit range_exception(argument_type data) :
 		base(range_msg(data))
@@ -90,7 +90,7 @@ struct size_exception : public std::length_error {
 	typedef std::length_error base;
 	typedef T value_type;
 	typedef size value;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 
 	explicit size_exception(argument_type data) :
 		base(size_msg(data)) { }
@@ -113,7 +113,7 @@ struct str_length_exception : public std::length_error {
 	typedef T value_type;
 	typedef length value;
 
-	typedef typename safe_detail::select_types<T>::types types;
+	typedef typename safe_detail::types<T> types;
 	typedef typename types::argument_type argument_type;
 	typedef typename types::raw_type             raw_type;
 	typedef typename raw_type::size_type     length_type;

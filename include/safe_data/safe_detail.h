@@ -16,8 +16,8 @@ Description:
 #include "safe_data/safe_fwd.h"
 
 #include "boost/mpl/if.hpp"
-#include "boost/type_traits/remove_reference.hpp"
-#include "boost/type_traits/is_reference.hpp"
+
+#include <type_traits>
 
 namespace safe_data {
 namespace safe_detail {
@@ -36,7 +36,7 @@ struct not_ref_types {
 
 template<class T>
 struct ref_types {
-	typedef typename boost::remove_reference<T>::type raw_type;
+	typedef typename std::remove_reference<T>::type raw_type;
 	typedef T storage_type;
 
 	typedef raw_type & reference_const_type;
@@ -48,13 +48,27 @@ struct ref_types {
 
 template <class T>
 struct select_types {
-    typedef typename boost::is_reference<T>::type is_reference_predicate ;
+    typedef typename std::is_reference<T>::type is_reference_predicate ;
 
     typedef typename boost::mpl::if_<
 		is_reference_predicate,
 		ref_types<T>,
 		not_ref_types<T>
 	>::type types ;
+};
+    
+template<class T>
+struct types {
+    typedef typename select_types<T>::types selected_types;
+
+    typedef typename selected_types::raw_type raw_type;
+    typedef typename selected_types::storage_type storage_type;
+    
+    typedef typename selected_types::reference_const_type reference_const_type;
+    typedef typename selected_types::reference_type reference_type;
+    typedef typename selected_types::pointer_const_type pointer_const_type;
+    typedef typename selected_types::pointer_type pointer_type;
+    typedef typename selected_types::argument_type argument_type;
 };
 
 } // namespace safe_detail

@@ -202,7 +202,7 @@ inline Y           operator>> (Y const& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator+= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data += rhs.data();
 	lhs = data;
@@ -212,7 +212,7 @@ inline safe<T,V,I>& operator+= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator+= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data += rhs;
 	lhs = data;
@@ -228,7 +228,7 @@ inline Y&           operator+= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator-= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data -= rhs.data();
 	lhs = data;
@@ -238,7 +238,7 @@ inline safe<T,V,I>& operator-= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator-= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data -= rhs;
 	lhs = data;
@@ -254,7 +254,7 @@ inline Y&           operator-= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator*= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data *= rhs.data();
 	lhs = data;
@@ -264,7 +264,7 @@ inline safe<T,V,I>& operator*= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator*= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data *= rhs;
 	lhs = data;
@@ -280,7 +280,7 @@ inline Y&           operator*= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator/= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data /= rhs.data();
 	lhs = data;
@@ -290,7 +290,7 @@ inline safe<T,V,I>& operator/= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator/= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data /= rhs;
 	lhs = data;
@@ -306,7 +306,7 @@ inline Y&           operator/= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator%= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data %= rhs.data();
 	lhs = data;
@@ -316,7 +316,7 @@ inline safe<T,V,I>& operator%= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator%= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data %= rhs;
 	lhs = data;
@@ -332,7 +332,7 @@ inline Y&           operator%= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator&= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data &= rhs.data();
 	lhs = data;
@@ -342,7 +342,7 @@ inline safe<T,V,I>& operator&= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator&= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data &= rhs;
 	lhs = data;
@@ -359,7 +359,7 @@ inline Y&           operator&= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator|= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data |= rhs.data();
 	lhs = data;
@@ -369,7 +369,7 @@ inline safe<T,V,I>& operator|= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator|= (safe<T,V,I>& lhs, Y const& rhs)
 {
-	typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+	typedef typename safe_detail::types<T>::raw_type raw_type;
 	raw_type data(lhs.data());
 	data |= rhs;
 	lhs = data;
@@ -386,7 +386,7 @@ inline Y&           operator|= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator^= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data ^= rhs.data();
     lhs = data;
@@ -396,7 +396,7 @@ inline safe<T,V,I>& operator^= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator^= (safe<T,V,I>& lhs, Y const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data ^= rhs;
     lhs = data;
@@ -413,7 +413,7 @@ inline Y&           operator^= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator<<= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data <<= rhs.data();
     lhs = data;
@@ -423,7 +423,7 @@ inline safe<T,V,I>& operator<<= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator<<= (safe<T,V,I>& lhs, Y const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data <<= rhs;
     lhs = data;
@@ -439,7 +439,7 @@ inline Y&           operator<<= (Y& lhs, safe<T,V,I> const& rhs)
 template <class T, class V, class I, class T2, class V2, class I2>
 inline safe<T,V,I>& operator>>= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data >>= rhs.data();
     lhs = data;
@@ -449,7 +449,7 @@ inline safe<T,V,I>& operator>>= (safe<T,V,I>& lhs, safe<T2,V2,I2> const& rhs)
 template <class T, class V, class I, class Y>
 inline safe<T,V,I>& operator>>= (safe<T,V,I>& lhs, Y const& rhs)
 {
-    typedef typename safe_detail::select_types<T>::types::raw_type raw_type;
+    typedef typename safe_detail::types<T>::raw_type raw_type;
     raw_type data(lhs.data());
     data >>= rhs;
     lhs = data;

@@ -25,7 +25,7 @@ template <class T, class min_value, class exception = min_exception<T, min_value
 struct min_validation {
 	typedef min_value value;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data < value() )
@@ -37,7 +37,7 @@ template <class T, class min_value, class exception = min_exception<T, min_value
 struct min_validation_lte {
 	typedef min_value value;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data <= value() )
@@ -50,7 +50,7 @@ template <class T, class max_value, class exception = max_exception<T, max_value
 struct max_validation {
 	typedef max_value value;
 	typedef exception  exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data > value() )
@@ -62,7 +62,7 @@ template <class T, class max_value, class exception = max_exception<T, max_value
 struct max_validation_gte {
 	typedef max_value value;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data >= value() )
@@ -76,7 +76,7 @@ struct range_validation {
     typedef min_value lower;
     typedef max_value upper;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data < lower() || data > upper() )
@@ -89,7 +89,7 @@ struct range_validation_min_lte_max_gte {
     typedef min_value lower;
     typedef max_value upper;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data <= lower() || data >= upper() )
@@ -102,7 +102,7 @@ struct range_validation_min_lte {
     typedef min_value lower;
     typedef max_value upper;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data <= lower() || data > upper() )
@@ -115,7 +115,7 @@ struct range_validation_max_gte {
     typedef min_value lower;
     typedef max_value upper;
 	typedef exception exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type data)
 	{
 		if ( data < lower() || data >= upper() )
@@ -128,7 +128,7 @@ template <class T, class size, class exception = size_exception<T, size> >
 struct size_validation {
 	typedef size value;
 	typedef exception  exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type container) {
 		if ( container.size() > value() )
 			throw exception_type(container);
@@ -140,7 +140,7 @@ template <class T, class length, class exception = str_length_exception<T, lengt
 struct str_length_validation {
 	typedef length value;
 	typedef exception  exception_type;
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 	static inline void validate(argument_type str) {
 		if ( str.length() > value() )
 			throw exception_type(str, str.length());

@@ -30,7 +30,7 @@ inline bool operator== (safe<T,V,I> const& lhs, Y const& rhs)
 
 template <class T, class V, class I, class Y>
 inline bool operator== (Y const& lhs, safe<T,V,I> const& rhs)
-{ return lhs == rhs.data(); }
+{ return rhs.data() == lhs; }
 
 
 // <

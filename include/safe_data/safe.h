@@ -23,7 +23,7 @@ namespace safe_data {
 
 // initial value
 template <class T> class no_initial {
-	typedef typename safe_detail::select_types<T>::types types;
+	typedef typename safe_detail::types<T> types;
 public:
 	typedef typename types::raw_type             raw_type;
     // typedef typename types::reference_const_type reference_const_type;
@@ -35,7 +35,7 @@ public:
 // data validation
 template <class T> class no_validation {
 public:
-	typedef typename safe_detail::select_types<T>::types::argument_type argument_type;
+	typedef typename safe_detail::types<T>::argument_type argument_type;
 
 	static void validate(argument_type /*data*/ ) { }
 };
@@ -44,7 +44,7 @@ public:
 // safe - throws an exception when new data does not pass validation
 template <class T, class validation_attributes, class initial_value>
 class safe {
-	typedef typename safe_detail::select_types<T>::types types;
+	typedef typename safe_detail::types<T> types;
 public:
 	typedef T value_type;
 	typedef validation_attributes validation_type;
