@@ -53,11 +53,11 @@ int main(int const argc, char* argv[])
 
 #include <boost/assert.hpp>
 
-//#include "safe_data/safe_data.hpp"
-#include "safe_data/safe.hpp"
-#include "safe_data/values.hpp"
-#include "safe_data/validations.hpp"
-#include "safe_data/exceptions.hpp"
+//#include "safe_data/safe_data.h"
+#include "safe_data/safe.h"
+#include "safe_data/values.h"
+#include "safe_data/validations.h"
+#include "safe_data/exceptions.h"
 
 #include <string>
 
@@ -211,9 +211,9 @@ void test_int(std::ostream& out)
 	out << endl;
 }
 
-#include "safe_data/compare.hpp"
-#include "safe_data/io.hpp"
-#include "safe_data/operators.hpp"
+#include "safe_data/compare.h"
+#include "safe_data/io.h"
+#include "safe_data/operators.h"
 
 typedef safe_data::c_str<boost::mpl::string<'f', 'o', 'o'> > str_initial;
 
@@ -225,10 +225,10 @@ void test_str(std::ostream& out)
 	out << " - string length test - " << endl;
 	safe_str s; // initial "foo"
 
-	BOOST_ASSERT(s == "foo"); // use boost/safe_data/compare.hpp or get(s) or s.data()
-	out << "initial value: " << s << endl; // use boost/safe_data/io.hpp or get(s) or s.data()
+	BOOST_ASSERT(s == "foo"); // use boost/safe_data/compare.h or get(s) or s.data()
+	out << "initial value: " << s << endl; // use boost/safe_data/io.h or get(s) or s.data()
 
-	s += " bar"; // use boost/safe_data/operators.hpp or s = get(s) + " bar"
+	s += " bar"; // use boost/safe_data/operators.h or s = get(s) + " bar"
 	BOOST_ASSERT(s == "foo bar");
 	out << "concatination: " << s << endl;
 
@@ -335,7 +335,7 @@ void test_const(std::ostream& out)
 }
 
 #pragma warning (disable:4996)
-#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/gregorian/gregorian.h>
 
 using boost::gregorian::date;
 

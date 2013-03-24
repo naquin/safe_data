@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/common_values.hpp
+	safe_data/common_values.h
 
 Created: 2006.05.14
 

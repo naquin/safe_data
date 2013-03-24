@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/common_exceptions.hpp
+	safe_data/common_exceptions.h
 
 Created: 2006.05.14
 
@@ -13,7 +13,7 @@ Description:
 #ifndef SAFE_DATA_COMMON_EXCEPTIONS_MPN_14MAY2006_HPP
 #define SAFE_DATA_COMMON_EXCEPTIONS_MPN_14MAY2006_HPP
 
-#include "safe_detail.hpp"
+#include "safe_data/safe_detail.h"
 
 #include <stdexcept>
 #include <string>

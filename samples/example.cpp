@@ -13,7 +13,7 @@ Description:
 #include <stdexcept>
 #include <string>
 
-#include "safe_data/safe_data.hpp"
+#include "safe_data/safe_data.h"
 
 using std::string;
 using std::cout;

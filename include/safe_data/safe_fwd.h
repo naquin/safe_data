@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/safe_fwd.hpp
+	safe_data/safe_fwd.h
 
 Created: 2006.05.14
 

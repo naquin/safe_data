@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/safe_detail.hpp
+	safe_data/safe_detail.h
 
 Created: 2006.05.14
 
@@ -13,7 +13,7 @@ Description:
 #ifndef SAFE_DATA_SAFE_DETAIL_MPN_14MAY2006_HPP
 #define SAFE_DATA_SAFE_DETAIL_MPN_14MAY2006_HPP
 
-#include "safe_fwd.hpp"
+#include "safe_data/safe_fwd.h"
 
 #include "boost/mpl/if.hpp"
 #include "boost/type_traits/remove_reference.hpp"

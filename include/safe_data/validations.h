@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/common_validations.hpp
+	safe_data/common_validations.h
 
 Created: 2006.05.14
 
@@ -13,9 +13,9 @@ Description:
 #ifndef SAFE_DATA_COMMON_VALIDATIONS_MPN_14MAY2006_HPP
 #define SAFE_DATA_COMMON_VALIDATIONS_MPN_14MAY2006_HPP
 
-#include "safe_detail.hpp"
+#include "safe_data/safe_detail.h"
 
-#include "exceptions.hpp"
+#include "safe_data/exceptions.h"
 
 namespace safe_data {
 

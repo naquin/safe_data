@@ -2,7 +2,7 @@
 Copyright Mike Naquin, 2006. All rights reserved.
 
 File:
-	safe_data/operators.hpp
+	safe_data/operators.h
 
 Created: 2006.05.14
 
@@ -13,8 +13,8 @@ Description:
 #ifndef SAFE_DATA_OPERATORS_MPN_14MAY2006_HPP
 #define SAFE_DATA_OPERATORS_MPN_14MAY2006_HPP
 
-#include "safe_fwd.hpp"
-#include "safe_detail.hpp"
+#include "safe_data/safe_fwd.h"
+#include "safe_data/safe_detail.h"
 
 namespace safe_data {
 
