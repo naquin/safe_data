@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0CD7A4F216FF18940054BA88 /* safe_data */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = safe_data; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD7A4F216FF18940054BA88 /* safe_data_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = safe_data_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD7A50016FF18B10054BA88 /* compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
 		0CD7A50116FF18B10054BA88 /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exceptions.h; sourceTree = "<group>"; };
 		0CD7A50216FF18B10054BA88 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		0CD7A4F316FF18940054BA88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0CD7A4F216FF18940054BA88 /* safe_data */,
+				0CD7A4F216FF18940054BA88 /* safe_data_test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			);
 			name = safe_data_test;
 			productName = safe_data;
-			productReference = 0CD7A4F216FF18940054BA88 /* safe_data */;
+			productReference = 0CD7A4F216FF18940054BA88 /* safe_data_test */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +185,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/gtest/include",
+					"$(SRCROOT)/boost",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -212,7 +216,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/gtest/include",
+					"$(SRCROOT)/boost",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -221,6 +229,14 @@
 		0CD7A4FC16FF18940054BA88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					GTEST_USE_OWN_TR1_TUPLE,
+				);
+				OTHER_LDFLAGS = (
+					"-lgtest",
+					"-lgtest_main",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -228,6 +244,14 @@
 		0CD7A4FD16FF18940054BA88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					GTEST_USE_OWN_TR1_TUPLE,
+				);
+				OTHER_LDFLAGS = (
+					"-lgtest",
+					"-lgtest_main",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
