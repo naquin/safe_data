@@ -1,4 +1,4 @@
-safe_data 0.3
+safe_data 0.4
 =============
 
 safe_data provides convenient and efficient C++ data types that are
@@ -20,7 +20,11 @@ include the files:
 
     #include <safe_data/safe_data.hpp>
 
-You can also compile and run test.cpp to make sure your compiler works with
+Unit Tests
+----------
+The unit tests require Google Test (https://code.google.com/p/googletest/).
+
+After compiling Google Test, run test.cpp to make sure your compiler works with
 safe_data.
 
 Directions
