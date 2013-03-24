@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0CD7A50F16FF18B10054BA88 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CD7A50D16FF18B10054BA88 /* test.cpp */; };
+		0CD7A56D16FF38CF0054BA88 /* example.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CD7A50B16FF18B10054BA88 /* example.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CD7A50F16FF18B10054BA88 /* test.cpp in Sources */,
+				0CD7A56D16FF38CF0054BA88 /* example.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

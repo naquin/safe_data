@@ -259,3 +259,10 @@ TEST(SafeDataTest, Date)
 	safe_date sd;
 	EXPECT_EQ(date_initial(), sd);
 }
+
+void example();
+
+TEST(SafeData, Example)
+{
+    EXPECT_NO_THROW(example());
+}

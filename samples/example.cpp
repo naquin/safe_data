@@ -15,10 +15,6 @@ Description:
 
 #include "safe_data/safe_data.h"
 
-using std::string;
-using std::cout;
-using std::endl;
-
 using safe_data::safe;
 using safe_data::no_initial;
 using safe_data::no_validation;
@@ -48,8 +44,8 @@ typedef safe<
 
 // A string type that cannot exceed a length of 8 characters. Defaults to "foo".
 typedef safe<
-    string,
-    str_length_validation<string, boost::mpl::size_t<8> >,
+    std::string,
+    str_length_validation<std::string, boost::mpl::size_t<8> >,
     c_str<boost::mpl::string<'f', 'o', 'o'> >
 > safe_str;
 
@@ -61,7 +57,7 @@ void example()
     	p = 1.5;   // throws exception: out of range
     }
     catch (std::exception const& e) {
-        cout << e.what() << endl;
+        std::cout << e.what() << std::endl;
     }
 
 	safe_int i; // initial value set to 8
@@ -71,7 +67,7 @@ void example()
     	i = 43;     // throws exception: greater than the max value
     }
     catch (std::exception const& e) {
-        cout << e.what() << endl;
+        std::cout << e.what() << std::endl;
     }
 	i = -128;   // no minimum validation; okay
 
@@ -81,6 +77,6 @@ void example()
     	s += " too long"; // throws exception: string length would now be too long
 	}
     catch (std::exception const& e) {
-        cout << e.what() << endl;
+        std::cout << e.what() << std::endl;
     }    
 }
